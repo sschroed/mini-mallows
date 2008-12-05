@@ -50,12 +50,6 @@
 }
 
 - (void)dealloc {
-	[mpfRequest release];
-	[mpfFormFields release];
-	[mpfBoundry release];
-	[mpfBody release];
-	[mpfFileName release];
-	[mpfFieldNameForFile release];
     [super dealloc];
 }
 
