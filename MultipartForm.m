@@ -19,8 +19,8 @@
 	[self dealloc];
 	
 	@throw [NSException exceptionWithName:@"MiniMallowsBadInitCall" 
-								   							 reason:@"Initial MultipartForm with initWithURL:"
-								 							 userInfo:nil];
+								   reason:@"Initial MultipartForm with initWithURL:"
+								 userInfo:nil];
 	return nil;
 }
 
@@ -29,27 +29,34 @@
 	if (![super init])
 		return nil;
 
-	mpfRequest = [NSMutableURLRequest requestWithURL:url];
-	mpfFormFields = [NSMutableDictionary dictionaryWithCapacity:1];
+	mpfRequest = [[NSMutableURLRequest requestWithURL:url] retain];
+	mpfFormFields = [[NSMutableDictionary dictionaryWithCapacity:1] retain];
 	
 	// Set boundry string
-	mpfBoundry = [NSString stringWithString:@"MiniMallowsBoundry"];
+	// TODO: Create a dynamics boundry string
+	mpfBoundry = @"MiniMallowsBoundary"; // [NSString stringWithString:@"MiniMallowsBoundry"];
 	
 	// Adding header information
 	[mpfRequest setHTTPMethod:@"POST"];
 	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", mpfBoundry];
 	[mpfRequest addValue:contentType forHTTPHeaderField: @"Content-Type"];
 	
-	// Alter the line below for your specific accept type
+	// !!!: Alter the line below if you need a specific accept type
 	//[mpfRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	
 	// Set Body infomation
-	mpfBody = [NSMutableData data];
+	mpfBody = [[NSMutableData data] retain];
 	
 	return self;
 }
 
 - (void)dealloc {
+	[mpfRequest release];
+	[mpfFormFields release];
+	[mpfBody release];
+	[mpfBoundry release];
+	[mpfFileName release];
+	[mpfFieldNameForFile release];
     [super dealloc];
 }
 
@@ -100,8 +107,10 @@
 
 - (void)addFile:(NSString *)fileName withFieldName:(NSString *)fieldName {
 	
-	mpfFileName = fileName;
-	mpfFieldNameForFile = fieldName;
+	[mpfFileName release];
+	mpfFileName = [fileName retain];
+	[mpfFieldNameForFile release];
+	mpfFieldNameForFile = [fieldName release];
 }
 
 @end

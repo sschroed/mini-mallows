@@ -11,10 +11,10 @@
 @interface MultipartForm : NSObject {
 	NSMutableURLRequest	*mpfRequest;
 	NSMutableDictionary	*mpfFormFields;
-	NSString						*mpfFileName;
-	NSString						*mpfFieldNameForFile;
-	NSString						*mpfBoundry;
-	NSMutableData				*mpfBody;
+	NSString			*mpfFileName;
+	NSString			*mpfFieldNameForFile;
+	NSString			*mpfBoundry;
+	NSMutableData		*mpfBody;
 }
 
 - (NSMutableURLRequest *)mpfRequest;
