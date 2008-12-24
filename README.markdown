@@ -16,6 +16,10 @@ Easy.
 This project was written to satisfy my need to POST a single image and related form fields from an iPhone app to a web service.
 It only allows for the addition of one file per request.  I am very open to comments, patches, and ridicule.
 
+**UPDATE: Vladimir Pouzanov has written a multi-part form wrapper for cocoa which I've added to MM.  If you can read Russian his blog
+post is [here](http://byteflow.hackndev.org/blog/index.php/2008/12/multipartform-data-%D0%B2-cocoa/).  I'll move all this readme to
+the wiki if I can get Vladimir to write an English version.
+
 ## Installation
 
 Copy the files `MultipartForm.h` and `MultipartForm.m` anywhere you like into your Xcode project.
@@ -50,7 +54,7 @@ All set so POST the form.
 
     urlData = [NSURLConnection sendSynchronousRequest:postRequest returningResponse:&response error:&error];
 
-## Author
+## Authors
 
 Samuel Schroeder 
 
@@ -59,9 +63,18 @@ Samuel Schroeder
 * Managing Consultant <:> Proton Microsystems, LLC <:> iPhone/Rails Development
 * twitter - [@SamSchroeder](http://twitter.com/SamSchroeder)
 
+
+Vladimir Pouzanov
+
+* Blog	[http://farcaller.net/blog/](http://farcaller.net/blog/)
+* Email	farcaller@gmail.com
+* Jabber	farcaller@im.hackndev.com
+* Twitter	[@farcaller](http://twitter.com/farcaller)
+* Linkedin	[farcaller](http://www.linkedin.com/in/farcaller)
+
 ## License
 
-Copyright (c) 2008 Samuel Schroeder / Proton Microsystems, LLC
+Copyright (c) 2008 Samuel Schroeder / Proton Microsystems, LLC & Vladimir Pouzanov / Hack&Dev FSO
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
