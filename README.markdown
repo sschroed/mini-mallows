@@ -54,6 +54,31 @@ All set so POST the form.
 
     urlData = [NSURLConnection sendSynchronousRequest:postRequest returningResponse:&response error:&error];
 
+## DQMultipartForm Usage
+
+DQMultipartForm is based on the concepts of MultipartForm, but has simplier interface. To create new form you init it with NSURL object:
+
+    NSURL *postUrl = [NSURL URLWithString:@"http://www.domain.com"];
+    DQMultipartForm *form = [[[DQMultipartForm alloc] initWithURL:postUrl] autorelease];
+
+Now you can add fields to your form. This is done via addValue:forField: selctor. You can pass any object to get its description as value, so you can simply add NSNumber without converting to NSString:
+
+    [form addValue:[NSNumber numberWithInt:10] forKey:@"myInt"];
+
+If the passed object is a NSString and key starts with "@" than it's parsed a request to add file. In this case value is a file name pointing to file that would be added for given key without "@" char.
+
+DQMultipartForm supports adding several values for same key, this is useful in case you have php on server side and want to process key[]=value1&key[]=value2 autoarrays.
+
+To build a request you simply call
+
+    NSURLRequest *rq = [form urlRequest];
+
+Please note, that actual data processing (and file loading) is done at this step.
+
+## Caveats
+
+File data is loaded in one big chunk, so it may take large amounts of RAM if you add a big file.
+
 ## Authors
 
 Samuel Schroeder 
