@@ -110,7 +110,7 @@
 	[mpfFileName release];
 	mpfFileName = [fileName retain];
 	[mpfFieldNameForFile release];
-	mpfFieldNameForFile = [fieldName release];
+	mpfFieldNameForFile = [fieldName retain];
 }
 
 @end
